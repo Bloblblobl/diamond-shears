@@ -1,0 +1,14 @@
+form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+}
+
+form button {
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    justify-self: start;
+    margin: 0;
+}
