@@ -40,19 +40,20 @@ async function setup() {
     submitButton.addEventListener('click', e => {
         // Get the data from the form and open a new Obsidian note with it.
         e.preventDefault();
-        const vault = encodeURIComponent(vaultInput.value);
+        const vault = vaultInput.value;
         const embed = embedInput.checked;
         const url = urlInput.value;
-        const content = encodeURIComponent(embed ? `![[${url}]]` : url);
+        const content = embed ? `![](${url})` : url;
 
         const pathPrefix = pathPrefixInput.value;
         const noteName = noteNameInput.value;
-        const filePath = encodeURIComponent(
-            pathPrefix ? `${pathPrefix}/${noteName}` : noteName
-        );
+        const filePath = pathPrefix ? `${pathPrefix}/${noteName}` : noteName
 
         const queryParams = new URLSearchParams({vault, file: filePath, content});
-        const obsidianUri = `obsidian://new?${queryParams.toString()}`;
+        // URLSearchParams replaces spaces with +, so we replace them with %20
+        // to make sure they are decoded correctly by Obsidian.
+        const queryParamString = queryParams.toString().replace(/\+/g, '%20');
+        const obsidianUri = `obsidian://new?${queryParamString}`;
         chrome.tabs.create({url: obsidianUri});
     });
 }

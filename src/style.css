@@ -1,11 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --font: 'Roboto Mono', monospace;
+    --dark-purple: #8563BB;
+    --purple: #A68ECD;
+    --light-purple: #D4BFFF;
+    --lightest-purple: #F1E6FF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--dark-purple);
+}
+
+body {
+    font-family: var(--font);
+}
+
+h1 {
+    color: var(--dark-purple);
+    margin-top: 0;
+}
+
 form {
     display: grid;
+    gap: 0.5rem;
     grid-template-columns: auto 1fr;
-    gap: 5px;
+}
+
+form label {
+    align-self: center;
+    font-size: 1rem;
+}
+
+form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font);
+    font-size: 1rem;
+    padding: 0.25rem;
+}
+
+form input[type="text"]:not(:focus-visible) {
+    background: var(--lightest-purple);
+    border-bottom: 2px solid var(--purple);
+}
+
+form input[type="checkbox"] {
+    accent-color: var(--dark-purple);
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 form button {
-    width: 100%;
+    color: var(--dark-purple);
+    cursor: pointer;
+    background-color: var(--light-purple);
+    border: none;
+    font-family: var(--font);
+    font-size: 1.25rem;
+    font-weight: bold;
+    grid-column: span 2;
+    padding: 0.5rem 0;
+}
+
+form button:hover {
+    background-color: var(--purple);
+    color: white;
 }
 
 input[type="checkbox"] {
